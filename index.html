@@ -480,7 +480,7 @@
         desc:'GED, archivage légal, signatures, conformité réglementaire.' },
       { id:'parametrage', label:'Paramétrage', icon:'⚙️', type:'module-top',
         x:1324, y:128, w:128, h:34,
-        desc:'Configuration système : utilisateurs, droits, référentiels, séquences.' },
+        desc:'Configuration centrale : wilaya, banques, TVA, devis, plan comptable, séquences, droits utilisateurs. Diffuse ses référentiels vers tout le système.' },
 
       // ── MID ROW LABEL ──────────────────────────────────────
       { id:'lbl-wilaya', label:'wilaya, banque, TVA, devis', type:'label',
@@ -608,6 +608,20 @@
       // ── ERP root → top modules
       ['erp','production'], ['erp','fiscalite'], ['erp','projets-taches'],
       ['erp','logistique'], ['erp','documents'], ['erp','parametrage'],
+
+      // ── Paramétrage → entités configurées (wilaya, banque, TVA, devis)
+      // Le label "wilaya, banque, TVA, devis" est rattaché à Paramétrage
+      ['parametrage','lbl-wilaya', { route:[[1388,162],[1388,200],[896,200],[896,240]] }],
+      // banque → Comptes Bancaires (route par la droite, contourne le bas)
+      ['parametrage','comptes-bancaires', { route:[[1452,145],[1615,145],[1615,820],[632,820],[632,880]] }],
+      // Plan Comptable SCF (paramétrage comptable)
+      ['parametrage','plan-comptable', { route:[[1452,145],[1625,145],[1625,925],[498,925],[498,940]] }],
+      // TVA → Fiscalité DZ (règles fiscales) — route par-dessus le bandeau supérieur
+      ['parametrage','fiscalite', { route:[[1324,145],[1314,145],[1314,182],[769,182],[769,162]] }],
+      // devis → numérotation/modèles de Devis
+      ['parametrage','devis', { route:[[1388,162],[1388,212],[1605,212],[1605,590],[584,590],[584,576]] }],
+      // wilaya → Clients (référentiel géographique)
+      ['parametrage','clients', { route:[[1452,145],[1595,145],[1595,418],[352,418],[352,458]] }],
 
       // ── ERP root → mid modules
       ['erp','dashboard'], ['erp','rh-paie'], ['erp','projets'],
